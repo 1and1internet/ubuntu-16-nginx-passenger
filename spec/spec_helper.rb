@@ -13,7 +13,7 @@ set :backend, :docker
 set :docker_image, @image.id
 #set :docker_debug, true
 set :docker_container_start_timeout, 240
-set :docker_container_ready_regex, /Zend Framework 2 should be installed/
+set :docker_container_ready_regex, /RAN_00/
 
 set :docker_container_create_options, {
   'Image'      => @image.id,
