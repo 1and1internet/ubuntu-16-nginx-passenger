@@ -6,4 +6,3 @@ if [[ ${UID} == 0 ]]; then
     sed -i -e "/user=nobody/a \group=nobody" /etc/supervisor/supervisord.conf
 fi
 
-echo 'RAN_00'
