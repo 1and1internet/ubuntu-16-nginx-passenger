@@ -34,7 +34,7 @@ RUN \
 	sed -i -e 's|listen \[::\]:80|listen \[::\]:8080|' /etc/nginx/sites-enabled/default && \
 	sed -i -e 's|# listen 443|listen 8443|' /etc/nginx/sites-enabled/default && \
 	sed -i -e 's|# listen \[::\]:443|listen \[::\]:8443|' /etc/nginx/sites-enabled/default && \
-	sed -i -e 's|root /var/www/html|root /var/www|' /etc/nginx/sites-enabled/default && \
+	sed -i -e 's|root /var/www/html|root /var/www/public|' /etc/nginx/sites-enabled/default && \
 	perl -0 -p -i -e 's/location \/ \{.*?\}/location \/ \{ passenger_enabled on; passenger_app_type wsgi; \}/s' /etc/nginx/sites-enabled/default && \
 	chmod -R 777 /etc/nginx/sites-enabled && \
 	echo "passenger_user_switching off;" >> /etc/nginx/passenger.conf && \
