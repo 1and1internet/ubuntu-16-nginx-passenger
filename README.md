@@ -1,7 +1,5 @@
 # ubuntu-16-nginx-passenger
 
-**_Current Status: Work In Progress_**
-
 A Docker image for Phusion Passenger and nginx. Intended for eventual deployment under OpenShift.
 
 * Phusion Passenger is a web application server: https://www.phusionpassenger.com/
