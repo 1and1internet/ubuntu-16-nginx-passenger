@@ -17,7 +17,6 @@ RUN \
 	rm -rf /var/www/html && \
 	rm -rf /var/www && \
 	mkdir -p /var/www && \
-	mkdir -p /var/www/public && \
 	chmod -R 777 /var/www /var/log/nginx /var/lib/nginx && \
 	chmod -R 755 /hooks /init /etc/ssl/private && \
 	chmod 777 /etc/passwd /etc/group /etc && \
