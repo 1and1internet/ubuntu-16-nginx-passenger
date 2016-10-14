@@ -2,7 +2,10 @@ FROM 1and1internet/ubuntu-16
 MAINTAINER brian.wojtczak@1and1.co.uk
 ARG DEBIAN_FRONTEND=noninteractive
 COPY files /
-ENV PASSENGER_APP_ENV=production
+ENV PASSENGER_APP_ENV=production \
+	SSL_KEY=/ssl/ssl.key \
+	SSL_CERT=/ssl/ssl.crt
+    
 RUN \
 	apt-get update -q && \
 	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7 && \
