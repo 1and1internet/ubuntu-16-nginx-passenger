@@ -5,7 +5,7 @@ COPY files /
 ENV PASSENGER_APP_ENV=production \
 	SSL_KEY=/ssl/ssl.key \
 	SSL_CERT=/ssl/ssl.crt
-    
+
 RUN \
 	apt-get update -q && \
 	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7 && \
@@ -33,12 +33,6 @@ RUN \
 	sed -i -r -e '/^user www-data;/d' /etc/nginx/nginx.conf && \
 	sed -i -e '/sendfile on;/a\        client_max_body_size 0\;' /etc/nginx/nginx.conf && \
 	sed -i -e 's|# include /etc/nginx/passenger|include /etc/nginx/passenger|' /etc/nginx/nginx.conf && \
-	sed -i -e 's|listen 80|listen 8080|' /etc/nginx/sites-enabled/default && \
-	sed -i -e 's|listen \[::\]:80|listen \[::\]:8080|' /etc/nginx/sites-enabled/default && \
-	sed -i -e 's|# listen 443|listen 8443|' /etc/nginx/sites-enabled/default && \
-	sed -i -e 's|# listen \[::\]:443|listen \[::\]:8443|' /etc/nginx/sites-enabled/default && \
-	sed -i -e 's|root /var/www/html|root /var/www/public|' /etc/nginx/sites-enabled/default && \
-	perl -0 -p -i -e 's/location \/ \{.*?\}/location \/ \{ passenger_enabled on; passenger_app_type wsgi; passenger_app_env production; \}/s' /etc/nginx/sites-enabled/default && \
 	chmod -R 777 /etc/nginx/sites-enabled && \
 	echo "passenger_user_switching off;" >> /etc/nginx/passenger.conf && \
 	/usr/bin/passenger-config validate-install  --auto --no-colors
