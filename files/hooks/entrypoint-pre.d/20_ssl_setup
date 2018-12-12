@@ -9,7 +9,7 @@ if [[ ! -e  "$SSL_KEY" ]] && [[ ! -e "$SSL_CERT" ]]; then
   echo "Not enabling SSL as neither key nor cert provided."
   exit 0
 
-#If key and cert are provided, check they are valid and match. 
+#If key and cert are provided, check they are valid and match.
 elif [[ ! -z "$SSL_KEY" ]] && [[ ! -z "$SSL_CERT" ]]; then
 
   KEYCHECK=`openssl rsa -in "$SSL_KEY" -check 2>&1 | grep --quiet "ok" ; echo $?`
@@ -37,14 +37,14 @@ elif [[ ! -z "$SSL_KEY" ]] && [[ ! -z "$SSL_CERT" ]]; then
   #Passed all tests, we'll configure SSL  .
   else
     echo "Enabling SSL."
-    sed -i -e 's/# listen 443/listen 8443/g' /etc/nginx/sites-enabled/default
-    sed -i -e 's/# listen \[::\]:443/listen \[::\]:8443/g' /etc/nginx/sites-enabled/default
+    sed -i -e 's/# listen 8443/listen 8443/g' /etc/nginx/sites-enabled/default
+    sed -i -e 's/# listen \[::\]:8443/listen \[::\]:8443/g' /etc/nginx/sites-enabled/default
     sed -i -e "/server_name _;/a \        ssl\_certificate\_key ${SSL_KEY}\;" /etc/nginx/sites-enabled/default
     sed -i -e "/server_name _;/a \        ssl\_certificate ${SSL_CERT}\;" /etc/nginx/sites-enabled/default
   fi
 
 #Otherwise we will fail startup.
-else 
+else
   echo "Missing either SSL key or cert. Failed to configure SSL, exiting."
   exit 1
 fi
