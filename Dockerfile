@@ -35,6 +35,8 @@ RUN \
 	sed -i -e 's|# include /etc/nginx/passenger|include /etc/nginx/passenger|' /etc/nginx/nginx.conf && \
 	chmod -R 777 /etc/nginx/sites-enabled && \
 	echo "passenger_user_switching off;" >> /etc/nginx/passenger.conf && \
-	/usr/bin/passenger-config validate-install  --auto --no-colors
+	/usr/bin/passenger-config validate-install  --auto --no-colors && \
+	chmod g+w /usr/share/nginx
+
 EXPOSE 8080 8443
 WORKDIR /var/www
