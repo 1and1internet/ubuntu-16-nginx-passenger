@@ -2,6 +2,7 @@
 
 import unittest
 from testpack_helper_library.unittests.dockertests import Test1and1Common
+import time
 
 
 class Test1and1Image(Test1and1Common):
@@ -89,6 +90,7 @@ class Test1and1Image(Test1and1Common):
         self.assertPackageIsInstalled("nginx-common")
 
     def test_var_run_nginx_pid(self):
+        time.sleep(1)
         self.file_mode_test("/var/run/nginx.pid", "-rw-r--r--")
 
     '''def test_content(self):
@@ -97,7 +99,7 @@ class Test1and1Image(Test1and1Common):
 
     def test_passenger_version(self):
         version = self.exec("passenger --version")
-        self.assertEqual("Phusion Passenger 6", version[:19])
+        self.assertEqual("Phusion Passenger(R) 6", version[:22])
 
     def test_docker_logs(self):
         expected_log_lines = [
